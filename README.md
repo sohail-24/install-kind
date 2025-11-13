@@ -35,6 +35,7 @@ kubectl cluster-info
 kind delete cluster --name tws-kind-cluster
 ```
 8. Notes
+---
 Multiple Clusters: KIND supports multiple clusters. Use unique --name for each cluster. Custom Node Images: Specify Kubernetes versions by updating the image in the configuration file. Ephemeral Clusters: KIND clusters are temporary and will be lost if Docker is restarted.
 
 9. setup Jenkins
@@ -70,7 +71,7 @@ sudo systemctl enable jenkins
 sudo systemctl status jenkins
 ```
 
-10. After login to jenkins comeback to terminal add add permision also
+10. After login to jenkins come back to terminal and add permision in jenkins
 ```bash
 sudo usermod -aG docker jenkins
 ```
