@@ -1,4 +1,4 @@
-# installing packages like: docker, jenkins and kind-cluster
+# Installing All packages
 
 ---
 
@@ -33,12 +33,17 @@ kubectl cluster-info
  ```bash
 kind delete cluster --name tws-kind-cluster
 ```
----
-# Notes
+
+# Notes for kind cluster
 ---
 Multiple Clusters: KIND supports multiple clusters. Use unique --name for each cluster. Custom Node Images: Specify Kubernetes versions by updating the image in the configuration file. Ephemeral Clusters: KIND clusters are temporary and will be lost if Docker is restarted.
 
-9. setup Jenkins
+---
+# Install Jenkins
+
+---
+
+1. setup Jenkins
 ```bash
 sudo apt update
 ```
@@ -80,46 +85,92 @@ sudo systemctl restart jenkins
 #  Download AWS CLI v2
 
 ---
-11. install
+1. install
  ```bash
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 ```
-12. install unzip 
+2. install unzip 
 ```bash
 sudo apt install unzip -y
 ```
-13. unzip
+3. unzip
 ```bash
 unzip awscliv2.zip
 ```
-14. install aws cli
+4. install aws cli
 ```bash
 sudo ./aws/install
 ```
-15. chect install 
+5. chect install 
 ```bash
 aws --version
 ```
-16. configure aws credentials
+6. configure aws credentials.
 ```bash
 aws configure
 ```
-
----
-# Enter:
-
-##AWS Access Key ID
-##AWS Secret Access Key
-##region → ap-south-1
-##output → json
-
-17. Then run this to connect kubectl to EKS
+7. Then run this to connect kubectl to EKS
 ```bash
 aws eks --region ap-south-1 update-kubeconfig --name sms-cluster
 ```
-18. test nodes
+8. test nodes
 ```bash
 kubectl get nodes
 ```
+---
+# Installing Terraform on AWS Ubuntu (EC2)
+
+---
+1. update
+```bash
+sudo apt update -y
+```
+2. Install required dependencies
+```bash
+sudo apt install -y gnupg software-properties-common
+```
+3. Add HashiCorp GPG key
+```bash
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+```
+4. update again 
+```bash
+sudo apt update -y
+```
+5. Install Teraform
+```bash
+sudo apt install terraform -y
+```
+6. Verify installation
+```bash
+terraform -version
+```
+---
+# Install Ansible
+
+---
+
+1. update and upgrade
+```bash
+sudo apt update -y
+sudo apt upgrade -y
+```
+2. Install required dependencies
+```bash
+sudo apt install -y software-properties-common
+```
+3. Add Ansible official PPA
+```bash
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+```
+4. Install Ansible
+```bash
+sudo apt install -y ansible
+```
+5. Verify installation
+```bash
+ansible --version
+```
+---
 
 Thank you....
