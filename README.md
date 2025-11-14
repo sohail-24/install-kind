@@ -6,12 +6,11 @@
 
 1. give access to .sh file
   ```bash
-
 chmod 777 install-kind.sh
  ```
 2. run .sh file
   ```bash
-./install.sh
+./install-kind.sh
 ```
 3. give access to docker first
   ```bash
@@ -34,7 +33,8 @@ kubectl cluster-info
  ```bash
 kind delete cluster --name tws-kind-cluster
 ```
-8. Notes
+---
+# Notes
 ---
 Multiple Clusters: KIND supports multiple clusters. Use unique --name for each cluster. Custom Node Images: Specify Kubernetes versions by updating the image in the configuration file. Ephemeral Clusters: KIND clusters are temporary and will be lost if Docker is restarted.
 
@@ -70,8 +70,6 @@ sudo systemctl enable jenkins
 ```bash
 sudo systemctl status jenkins
 ```
-
-10. After login to jenkins come back to terminal and add permision in jenkins
 ```bash
 sudo usermod -aG docker jenkins
 ```
@@ -79,4 +77,49 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 ---
+#  Download AWS CLI v2
+
+---
+11. install
+ ```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+```
+12. install unzip 
+```bash
+sudo apt install unzip -y
+```
+13. unzip
+```bash
+unzip awscliv2.zip
+```
+14. install aws cli
+```bash
+sudo ./aws/install
+```
+15. chect install 
+```bash
+aws --version
+```
+16. configure aws credentials
+```bash
+aws configure
+```
+
+---
+# Enter:
+
+##AWS Access Key ID
+##AWS Secret Access Key
+##region → ap-south-1
+##output → json
+
+17. Then run this to connect kubectl to EKS
+```bash
+aws eks --region ap-south-1 update-kubeconfig --name sms-cluster
+```
+18. test nodes
+```bash
+kubectl get nodes
+```
+
 Thank you....
